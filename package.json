@@ -1,7 +1,7 @@
 {
-  "name": "sprint14",
+  "name": "sprint15",
   "version": "1.0.0",
-  "description": "Аутентификация и авторизация ",
+  "description": "Подготовка и деплой бэкенда ",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
