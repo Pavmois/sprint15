@@ -9,7 +9,6 @@ module.exports.createCard = (req, res, next) => {
   Card.create({ name, link, owner: req.user._id })
     .then((card) => res.send({ data: card }))
 
-    // eslint-disable-next-line no-undef
     .catch(() => next(new Error401('Ошибка при создании карточки')));
 };
 
@@ -17,17 +16,13 @@ module.exports.getAllCards = (req, res, next) => {
   Card.find({})
     .populate('owner')
     .then((cards) => res.send({ data: cards }))
-    // eslint-disable-next-line no-undef
     .catch(() => next(new Error500('На сервере произошла ошибка')));
 };
 
 module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.id)
-    // eslint-disable-next-line consistent-return
     .then((card) => {
-      // eslint-disable-next-line no-undef
       if (!card) return next(new Error404('Карточка отсутствует'));
-      // eslint-disable-next-line no-undef
       if (!card.owner.equals(req.user._id)) return next(new Error403('Вы не можете удалять чужие карточки'));
 
       return Card.remove(card).then((cardToDelete) => res.send(cardToDelete));
