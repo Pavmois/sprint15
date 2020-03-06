@@ -69,11 +69,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.use('*', (req, res) => {
-  res.statusCode = 404;
-  res.json({ message: 'Запрашиваемый ресурс не найден' });
-});
-
 app.listen(PORT, () => {
   console.log('Полёт нормальный');
 });
