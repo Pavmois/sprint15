@@ -13,7 +13,7 @@ const Error403 = require('../errors/error401');
 const app = express();
 app.use(cookie());
 
-// eslint-disable-next-line consistent-return
+
 module.exports.createUser = (req, res, next) => {
   const {
     name,
@@ -41,7 +41,6 @@ module.exports.createUser = (req, res, next) => {
       avatar,
       email,
     }))
-    // eslint-disable-next-line no-undef
     .catch(() => next(new Error403('Неверно ввели данные')));
 };
 
@@ -55,7 +54,6 @@ module.exports.login = (req, res, next) => {
       res.status(200).send({ token });
     })
     .catch(() => {
-      // eslint-disable-next-line no-undef
       next(new Error401('Неправильный логин или пароль'));
     });
 };
@@ -64,13 +62,11 @@ module.exports.getAllUsers = (req, res, next) => {
   User.find({})
     .populate('user')
     .then((users) => res.send({ data: users }))
-    // eslint-disable-next-line no-undef
     .catch(() => next(new Error404('Произошла ошибка при поиске всех пользователей')));
 };
 
 module.exports.getSingleUser = (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => res.send({ data: user }))
-    // eslint-disable-next-line no-undef
     .catch(() => next(new Error404('Нет пользователя с таким id')));
 };
